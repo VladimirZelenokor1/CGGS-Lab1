@@ -37,6 +37,7 @@ namespace cg
 	inline resource<T>::resource(size_t size)
 	{
 		data.resize(size);
+		stride = size;
 	}
 	template<typename T>
 	inline resource<T>::resource(size_t x_size, size_t y_size)
@@ -47,6 +48,7 @@ namespace cg
 	template<typename T>
 	inline resource<T>::~resource()
 	{
+		std::destroy(data.begin(), data.end());
 	}
 	template<typename T>
 	inline const T* resource<T>::get_data()
